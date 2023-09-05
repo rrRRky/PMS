@@ -1,0 +1,87 @@
+@import url(../../assets/fontawesome/css/solid.css);
+@import url(../../assets/fontawesome/css/all.min.css);
+@import url(../../assets/fontawesome/css/brands.css);
+@import url(../../assets/fontawesome/css/fontawesome.css);
+@import url(../../assets/fontawesome/css/svg-with-js.min.css);
+@import url(../../assets/fontawesome/css/regular.css);
+
+/* 
+.dashboardMain .sidenav {
+    width: 60px;
+    background: #f6f8fa;
+    border-right: 1px solid #dee2e6;
+    -webkit-transition: all .1s ease-out;
+    transition: width 0.3s ease-in-out;
+    height: 91.2vh;
+    padding: 0 0 calc(70px + 25px) 0;
+    padding-top: 28px;
+}
+.dashboardMain .sidenavClosed {
+    width: 275px;
+    background: #f6f8fa;
+    border-right: 1px solid #dee2e6;
+    margin-top: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 0 0 calc(70px + 25px) 0;
+    -webkit-transition: all .1s ease-out;
+    transition: all .1s ease-out;
+    transition: width 0.3s ease-in-out;
+    height: 91.2vh;
+    padding-top: 28px;
+}
+.dashboardMain .sidebar {
+    width: 275px;
+    transition: width 0.3s ease-in-out;
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz-transition: width 0.3s ease-in-out;
+    -ms-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+}
+.dashboardMain .sidebar.open {
+    width: 75px;
+    transition: width 0.3s ease-in-out;
+    -webkit-transition: width 0.3s ease-in-out;
+    -moz-transition: width 0.3s ease-in-out;
+    -ms-transition: width 0.3s ease-in-out;
+    -o-transition: width 0.3s ease-in-out;
+}
+.dashboardMain .linkTextClosed {
+    visibility: visible;
+    display: flex;
+    padding-left: 16px;
+    transition: display 0.3s ease-in-out;
+    -webkit-transition: display 0.3s ease-in-out;
+    -moz-transition: display 0.3s ease-in-out;
+    -ms-transition: display 0.3s ease-in-out;
+    -o-transition: display 0.3s ease-in-out;
+}
+.dashboardMain .linkText {
+    visibility: hidden;
+    display: none;
+    padding-left: 16px;
+    transition: display 0.8s ease-in-out;
+    -webkit-transition: display 0.8s ease-in-out;
+    -moz-transition: display 0.8s ease-in-out;
+    -ms-transition: display 0.8s ease-in-out;
+    -o-transition: display 0.8s ease-in-out;
+}
+.dashboardMain .subMenuClosed .linkText span{
+    display: none;
+}
+.dashboardMain .sidebar .linkTextClosed span{
+    visibility: visible!important;
+    display:flex!important;
+    padding: 0px 10px;
+}
+.dashboardMain .sidebar .linkTextClosed .nav-link{
+    display:flex!important;
+    color: #6d7080;
+}
+.sideitem:hover .linkTextClosed .sidebarMainText {
+    color: #25a0e2;
+    padding: 0px 10px;
+}
+.sideitem:hover .linkTextClosed svg path {
+    color: #25a0e2;
+} */

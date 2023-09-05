@@ -1,0 +1,19 @@
+.mainContainConatiner{
+    display:flex;
+    width: 100%;
+    flex-direction: column;
+}
+.mainContainConatiner {
+    width: 100%;
+}
+.mySideDrawerOuter {
+    position: relative;
+}
+.mySideDrawermain > div{
+    position: fixed;
+    z-index: 9;
+    height: 100vh;
+    border-radius: 5px;
+    box-shadow: 9px 14px 8px 12px #ccc;
+    background-color: #fff;
+}

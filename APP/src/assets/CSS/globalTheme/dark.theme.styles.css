@@ -1,0 +1,57 @@
+/* background-color: #1a1d21;
+border-bottom: 1px solid #e9ebec;
+title-color: #ced4da;
+color: #495057;
+
+ */
+ .dark header, .dark .sidenavClosed, .dark .sidebar, .dark .mainContainConatiner , .dark .mainContainConatiner .dashboardCard{
+    background-color:#151529!important
+}
+.dark header.myNavBar{
+    border: 1px solid #151529;
+    border-bottom: 0.5px solid #dee2e6;
+}
+
+.dark input.MuiInputBase-input {
+    background: #1a1d21!important;
+    border:#1a1d21!important;
+    color:#fff!important;
+    border-right: 0.5px solid #dee2e6;
+}
+.dark .MuiSvgIcon-root, .dark h2{
+    color:#fff!important;
+}
+.dark .searchBoxNavBar {
+    border:#17191b!important;
+    color:#fff!important;
+}
+.searchIconNavbar{
+    z-index: 9;
+}
+.dark .sideitem, .dark .sidebarMainText,.dark .submenu-coveritem,
+.dark .dashboardUser, .dark .dashboardGreeting {
+    color:#fff!important;
+}
+
+.dark .dashboardCard , .dark .dashboardCard p  , .dark .dashboardCard a{
+    color: #f2f2f2 !important;
+}
+.dark .ag-theme-alpine {
+    background-color: #2d3436;
+    color: #F5F5F5;
+}
+.dark label, .dark a.text-dark {
+    color: #fff!important;
+}
+        /* $dark-params: map-merge($ag-params, (
+        background-color: $background,
+        foreground-color: $foreground,
+        secondary-foreground-color: $foreground,
+        odd-row-background-color: darken($background, 3),
+        header-background-color: darken(#636e72, 30),
+        header-foreground-color: $foreground,
+        header-cell-hover-background-color: lighten($background, 5),
+        header-cell-moving-background-color: lighten($background, 5),
+        border-color: #424242,
+        hover-color: lighten($background, 7)
+      )); */

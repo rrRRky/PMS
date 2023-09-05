@@ -1,0 +1,8 @@
+span.loginLogo {
+    max-width: 200px;
+}
+
+span.loginLogo svg.sitlogo {
+    width: 100%;
+    height: 80px;
+}

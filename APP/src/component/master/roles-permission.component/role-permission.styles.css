@@ -1,0 +1,155 @@
+.mainContainConatiner {
+    width: 100%;
+}
+
+/* Style for the container holding the toggle switch */
+.switch-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  /* Style for the label text */
+  .switch-label {
+    margin-right: 10px;
+  }
+  
+  /* Style for the actual toggle switch */
+  .react-switch-bg {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    width: 50px!important;
+    height: 20px!important;
+    border-radius: 16px;
+    position: relative;
+    background-color: #f44336;
+    transition: background-color 0.3s ease;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    -ms-border-radius: 16px;
+    -o-border-radius: 16px;
+}
+  
+  .react-switch-handle {
+    width: 12px!important;
+    height: 12px!important;
+    border-radius: 50%;
+    background-color: #fff;
+    position: absolute;
+    top: 5px!important; /* Adjusted position */
+    left: 2px!important; /* Adjusted position */
+    transition: transform 0.3s ease;
+  }
+  .functionBlock .react-switch-handle {
+    top: 8px!important; /* Adjusted position */
+    left: 2px!important; /* Adjusted position */
+  }
+  
+  /* Style when the switch is toggled on */
+  .react-switch-bg.react-switch-bg-checked {
+    background-color: #4caf50!important; /* Green background color */
+  }
+  
+  .react-switch-bg.react-switch-bg-checked .react-switch-handle {
+    transform: translateX(30px); /* Adjusted position */
+  }
+  
+  /* Style for the switch when it's disabled */
+  .react-switch-bg.react-switch-bg-disabled {
+    cursor: not-allowed;
+    background-color: #ccc;
+  }
+  
+  /* Style for the handle when the switch is disabled */
+  .react-switch-bg.react-switch-bg-disabled .react-switch-handle {
+    background-color: #aaa;
+  }
+  
+  .react-switch-bg > div{
+    height: 22px!important;
+  }
+
+
+
+  /* accordian  */
+
+.accordion {
+    border: 1px solid rgba(0, 0, 0, 0.1)!important;
+    border-radius: 2px!important;
+    -webkit-border-radius: 2px!important;
+    -moz-border-radius: 2px!important;
+    -ms-border-radius: 2px!important;
+    -o-border-radius: 2px!important;
+}
+
+.accordion__item + .accordion__item {
+    border-top: 1px solid rgba(0, 0, 0, 0.1)!important;
+}
+
+.accordion__button {
+    background-color: #f4f4f4!important;
+    color: #444!important;
+    cursor: pointer;
+    padding: 18px!important;
+    width: 100%!important;
+    text-align: left!important;
+    border: none!important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.accordion__button:hover {
+    background-color: #ddd!important;
+}
+.accordion__button:before {
+  content: unset!important;
+}
+.accordion__button:after {
+    display: inline-block!important;
+    content: ''!important;
+    height: 10px!important;
+    width: 10px!important;
+    margin-right: 12px!important;
+    border-bottom: 2px solid currentColor!important;
+    border-right: 2px solid currentColor!important;
+    transform: rotate(-45deg)!important;
+    -webkit-transform: rotate(-45deg)!important;
+    -moz-transform: rotate(-45deg)!important;
+    -ms-transform: rotate(-45deg)!important;
+    -o-transform: rotate(-45deg)!important;
+}
+
+.accordion__button[aria-expanded='true']::after,
+.accordion__button[aria-selected='true']::after {
+    transform: rotate(45deg)!important;
+    -webkit-transform: rotate(45deg)!important;
+    -moz-transform: rotate(45deg)!important;
+    -ms-transform: rotate(45deg)!important;
+    -o-transform: rotate(45deg)!important;
+}
+
+[hidden] {
+    display: none!important;
+}
+
+.accordion__panel {
+    padding: 20px!important;
+    animation: fadein 0.35s ease-in!important;
+    -webkit-animation: fadein 0.35s ease-in!important;
+}
+
+/* -------------------------------------------------- */
+/* ---------------- Animation part ------------------ */
+/* -------------------------------------------------- */
+
+@keyframes fadein {
+    0% {
+        opacity: 0!important;
+    }
+
+    100% {
+        opacity: 1!important;
+    }
+}

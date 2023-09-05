@@ -1,0 +1,37 @@
+/* .light *{
+    color: #7c7f90, #25a0e2, #495057;
+    background-color: #f6f8fa;
+    title-color: #919da9;
+    border: 1px solid #e9ebec;
+    search-bg:     background-color: #f3f3f9;
+} */
+.light header, .light .sidenavClosed, .light .sidebar, .light .mainContainConatiner , .light .mainContainConatiner .dashboardCard{
+    background-color:#fff!important
+}
+.light input.MuiInputBase-input {
+    background: #f3f3f9!important;
+    border:#f3f3f9!important;
+    color:#1a1d21!important;
+}
+
+.light .MuiSvgIcon-root, .light h2{
+    color:#1a1d21!important;
+}
+.light .searchBoxNavBar {
+    border:#f3f3f9!important;
+    color:#fff!important;
+    border-right: 0.5px solid #dee2e6;
+}
+.searchIconNavbar{
+    z-index: 9;
+}
+.light .sideitem, .light .sidebarMainText,.light .submenu-coveritem, 
+.light .dashboardUser, .light .dashboardGreeting    {
+    color:#1a1d21!important;
+}
+.light .dashboardCard , .light .dashboardCard p , .light .dashboardCard a{
+    color: #6c757d !important;
+}
+/* .light .mainContainConatiner .dashboardCard{
+    
+} */

@@ -1,0 +1,85 @@
+/* import * as theme from  */
+
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap);                  
+@font-face {
+  font-family: SF-Pro-Text;
+  src: url(./assets/fonts/SF-Pro-Text-Bold.otf),
+  url(./assets/fonts/SF-Pro-Text-BoldItalic.otf),
+  url(./assets/fonts/SF-Pro-Text-Heavy.otf),
+  url(./assets/fonts/SF-Pro-Text-HeavyItalic.otf),
+  url(./assets/fonts/SF-Pro-Text-Black.otf),
+url(./assets/fonts/SF-Pro-Text-BlackItalic.otf),
+url(./assets/fonts/SF-Pro-Text-Light.otf),
+url(./assets/fonts/SF-Pro-Text-LightItalic.otf),
+url(./assets/fonts/SF-Pro-Text-Medium.otf),
+url(./assets/fonts/SF-Pro-Text-MediumItalic.otf),
+url(./assets/fonts/SF-Pro-Text-Regular.otf),
+url(./assets/fonts/SF-Pro-Text-RegularItalic.otf),
+url(./assets/fonts/SF-Pro-Text-Semibold.otf),
+url(./assets/fonts/SF-Pro-Text-SemiboldItalic.otf),
+url(./assets/fonts/SF-Pro-Text-Thin.otf),
+url(./assets/fonts/SF-Pro-Text-ThinItalic.otf),
+url(./assets/fonts/SF-Pro-Text-Ultralight.otf),
+url(./assets/fonts/SF-Pro-Text-UltralightItalic.otf);
+  src: local("hkgrotesk light"),url(./assets/fonts/hkgrotesk-light.woff) format("woff");
+  font-weight: 300
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+*{
+  font-family: "SF-Pro-Text"!important;
+  /* color: #495057; */
+  font-size: .9375rem;
+}
+* .text-dark{
+  color: #495057!important; 
+}
+.fa {
+  font-family: var(--fa-style-family,"Font Awesome 6 Free")!important;
+  font-weight: var(--fa-style,900)!important;
+}
+/* body {
+  background-color: ${({ theme }) => theme.colors.background};
+  color: ${({ theme }) => theme.colors.text};
+  font-family: monospace;
+  overflow-x: hidden;
+} */
