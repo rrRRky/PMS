@@ -153,8 +153,16 @@ export default function AddControlComponent({ updateGridData }) {
         console.log(payloadCatID);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -174,7 +182,7 @@ export default function AddControlComponent({ updateGridData }) {
             </Typography>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="controlName">Control Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="controlName">Name:</label>
                     <input
                     type="text"
                     id="controlName"
@@ -198,7 +206,7 @@ export default function AddControlComponent({ updateGridData }) {
                     />
                 </div> */}
                 <div className='mb-3'>
-                  <label className='form-label mb-2 fw-bold'>Control type:</label>
+                  <label className='form-label mb-2 fw-bold'>Type:</label>
                     <select className='form-control form-select' id="type" name="type"  onChange={handlecontrolTypeLookupChange}>
                       {LookupcontrolType.map(controlTypeLookup => (
                         <option key={controlTypeLookup.id} value={controlTypeLookup.id}>

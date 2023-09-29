@@ -3,6 +3,7 @@ import API_URL from '../../../config';
 import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Sidebar from '../../sidebar/sidebar.component';
+import $ from 'jquery';
 
 const EditModule = () => {
   const [role, setRole] = useState({
@@ -30,6 +31,14 @@ const EditModule = () => {
     }
   }, [id]);
 
+
+  useEffect(() => {
+    $('#inOrder').on('input', function() {
+      $(this).val($(this).val().replace(/\D/g, ''));
+    });
+  }, []); 
+  
+  
   const fetchModuleDetails = async (userToken, functionID) => {
     try {
       const response = await fetch(`${API_URL}Function?id=${functionID}`, {
@@ -142,7 +151,7 @@ const EditModule = () => {
                       <form onSubmit={handleSubmit}>
                         <div className='row'>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="functionName">Function Name:</label>
+                            <label className="mb-2 fw-bold" htmlFor="functionName">Name:</label>
                             <input
                               type="text"
                               id="functionName"
@@ -154,7 +163,7 @@ const EditModule = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="inOrder">Function Order:</label>
+                            <label className="mb-2 fw-bold" htmlFor="inOrder">Order:</label>
                             <input
                               type="text"
                               id="inOrder"

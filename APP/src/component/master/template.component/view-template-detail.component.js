@@ -39,8 +39,8 @@ const TemplateDetailComponent = () => {
                     'Authorization': `${userToken}`,
                   },
             });
-            console.log(id);
             const rowData = response.data; // Assuming the API response is an array of objects
+            console.log(rowData);
             setRowData(rowData);
             setIsLoading(false); 
         } catch (error) {
@@ -123,7 +123,7 @@ const TemplateDetailComponent = () => {
       cellRendererFramework: BtnCellRenderer,
     },
     { field: 'templatetName', headerName: 'Template Name' },
-    { field: 'controlId', headerName: 'Control Name' },
+    { field: 'controlIdName', headerName: 'Control Name' },
     { field: 'valueType', headerName: 'Value Type' },
     { field: 'labelName', headerName: 'Label Name' },
     { field: 'width', headerName: 'Width' },
@@ -131,6 +131,8 @@ const TemplateDetailComponent = () => {
     { field: 'isVisible', headerName: 'IsVisible' },
     { field: 'roleVisible', headerName: 'Role Visiable To' },
     { field: 'defaultValue', headerName: 'Defult Value' },
+    { field: 'sqlQuery', headerName: 'Sql Query'},
+    {field: 'listValue', headerName: 'List Values'},
     { field: 'inOrder', headerName: 'InOrder' },
     { field: 'createdByName', headerName: 'Created By', valueGetter: (params) => getUsername(params.data.createdByName)},
     { field: 'createdOn', headerName: 'Created On', minWidth: 220,valueGetter: (params) => formatDate(params.data.createdOn)},

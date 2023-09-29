@@ -4,14 +4,17 @@
   "description": "PMS_NodeJs_Api",
   "main": "app.js",
   "scripts": {
+    "test": "mocha 'SRC/test/**/*.spec.js'",
     "start": "nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "activedirectory": "^0.7.2",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "buffer": "^6.0.3",
+    "chai": "^4.3.8",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^16.3.1",
@@ -20,6 +23,7 @@
     "http": "^0.0.1-security",
     "jsonwebtoken": "^9.0.1",
     "lodash": "^4.17.21",
+    "mocha": "^10.2.0",
     "moment": "^2.29.4",
     "mssql": "^9.1.2",
     "nodemon": "^3.0.1",

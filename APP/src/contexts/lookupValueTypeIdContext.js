@@ -14,6 +14,7 @@ export function ValueTypeIdProvider({ children }) {
   useEffect(() => {
     // Fetch control data from API
     const userToken = localStorage.getItem('token');
+    if (userToken) {
     console.log(userToken);
     axios.get(API_URL + 'Lookup/LookupData?type=valueType', {
         headers: {
@@ -26,6 +27,7 @@ export function ValueTypeIdProvider({ children }) {
       .catch(error => {
         console.error('Error fetching Context data:', error);
       });
+    }
   }, []);
 
   const contextValue = {

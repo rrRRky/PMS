@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, Component } from 'react';
 import Sidebar from '../../sidebar/sidebar.component';
-import AddSubSpaceStageComponent from './add-sub-space-stage.component';
+// import AddSubSpaceStageComponent from './add-sub-space-stage.component';
 import { AgGridReact } from 'ag-grid-react';
 import '../css/ag-grid.css';
 import '../css/ag-theme-alpine.css';
@@ -73,11 +73,11 @@ const AllSubSpaceStageComponent = () => {
       maxWidth: 80,
       cellRendererFramework: BtnCellRenderer,
     },
-    { field: 'spaceListName', headerName: 'Sub Space Name' },
-    { field: 'stageName', headerName: 'Satge Name' },
-    { field: 'remark', headerName: 'Stage Remark' },
-    { field: 'templateName', headerName: 'Stage Template' },
-    { field: 'inOrder', headerName: 'Satge Order' },
+    { field: 'spaceListName', headerName: 'Name' },
+    { field: 'stageName', headerName: 'Stage Name' },
+    { field: 'remark', headerName: 'Remark' },
+    { field: 'templateName', headerName: 'Template Name' },
+    { field: 'inOrder', headerName: 'inOrder' },
     { field: 'createdByName', headerName: 'Created By', valueGetter: (params) => getUsername(params.data.createdByName)},
     { field: 'createdOn', headerName: 'Created On', minWidth: 220,valueGetter: (params) => formatDate(params.data.createdOn)},
     { field: 'updatedByName', headerName: 'Updated By', valueGetter: (params) => getUsername(params.data.updatedByName)},
@@ -111,7 +111,7 @@ const AllSubSpaceStageComponent = () => {
             <div className='row'>
               <div className='col-12 mb-3 mt-3 d-flex justify-content-between'>
                 <h2>Sub Space Stage List</h2>
-                <AddSubSpaceStageComponent />
+                {/* <AddSubSpaceStageComponent /> */}
               </div>
             </div>
           </div>

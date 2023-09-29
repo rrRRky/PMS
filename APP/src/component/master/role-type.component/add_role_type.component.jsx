@@ -160,11 +160,11 @@ export default function AddRoleComponent({ updateGridData }) {
         <SideDrawer open={open} onClose={handleClose}>
           <Box className="mySideDrawer"  sx={{ width: 400, bgcolor: 'background.paper', p: 2 }}>
             <Typography variant="h6" component="h2">
-              Add New role
+              Add New Role
             </Typography>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="roleName">role Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="roleName">Name:</label>
                     <input
                     type="text"
                     id="roleName"

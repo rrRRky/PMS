@@ -147,7 +147,7 @@ const Editstage = () => {
                       <form onSubmit={handleSubmit}>
                         <div className='row'>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="name">Stage Name:</label>
+                            <label className="mb-2 fw-bold" htmlFor="name">Name:</label>
                             <input
                               type="text"
                               id="name"
@@ -159,7 +159,7 @@ const Editstage = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="descriptions">Stage description:</label>
+                            <label className="mb-2 fw-bold" htmlFor="descriptions">Description:</label>
                             <input
                               type="text"
                               id="descriptions"
@@ -171,7 +171,7 @@ const Editstage = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="inOrder">Stage Order:</label>
+                            <label className="mb-2 fw-bold" htmlFor="inOrder">inOrder:</label>
                             <input
                               type="text"
                               id="inOrder"

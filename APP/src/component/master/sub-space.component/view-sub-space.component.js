@@ -9,7 +9,7 @@ import Box from '@mui/material/Box';
 import _ from 'lodash';
 import './style.styles.css';
 import API_URL from '../../../config';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import Button from '@mui/material/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -21,7 +21,6 @@ const SubSpaceComponent = () => {
     const [userMap, setUserMap] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [rowData, setRowData] = useState([]);
-  
     useEffect(() => {
       const userToken = localStorage.getItem('token');
       const fetchData = async () => {
@@ -33,6 +32,7 @@ const SubSpaceComponent = () => {
             });
             const rowData = response.data; // Assuming the API response is an array of objects
             setRowData(rowData);
+            console.log(rowData);
             setIsLoading(false); 
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -74,11 +74,11 @@ const SubSpaceComponent = () => {
       maxWidth: 80,
       cellRendererFramework: BtnCellRenderer,
     },
-    { field: 'code', headerName: 'Sub Space Code' },
-    { field: 'name', headerName: 'Sub Space Name' },
-    { field: 'Edit', headerName: 'Template Detail', cellRendererFramework: TempDetailRenderer },
+    { field: 'code', headerName: 'Code' },
+    { field: 'name', headerName: 'Name' },
+    { field: 'Edit', headerName: 'Select Template', cellRendererFramework: TempDetailRenderer },
     { field: 'description', headerName: 'Description' },
-    { field: 'iconUrl', headerName: 'Sub Space Icon' },
+    { field: 'iconUrl', headerName: 'Icon Name' },
     { field: 'spaceName', headerName: 'Space Name' },
     { field: 'createdByName', headerName: 'Created By', valueGetter: (params) => getUsername(params.data.createdByName)},
     { field: 'createdOn', headerName: 'Created On', minWidth: 220,valueGetter: (params) => formatDate(params.data.createdOn)},
@@ -152,6 +152,7 @@ const SubSpaceComponent = () => {
   );
 };
 
+
 class BtnCellRenderer extends Component {
   constructor(props) {
     super(props);
@@ -204,7 +205,11 @@ class BtnCellRenderer extends Component {
       default:
         break;
     }
+
   }, 200);
+
+ 
+  
   
   render() {
  
@@ -219,7 +224,7 @@ class BtnCellRenderer extends Component {
           className='p-0'
           variant='outline'
           style={{ minWidth: '40px', height: '44px' }}
-          onClick={() => this.btnClickedHandler(subspaceId, 'edit')}
+          onClick={() => this.btnClickedHandler(subspaceId, 'view')}
         >
           <Link to={`/edit-sub-space/${subspaceId}`}>
             <FontAwesomeIcon

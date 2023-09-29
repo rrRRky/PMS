@@ -14,6 +14,7 @@ export function SpaceProvider({ children }) {
   useEffect(() => {
     // Fetch space data from API
     const userToken = localStorage.getItem('token');
+    if (userToken) {
     console.log(userToken);
     axios.get(API_URL + 'Spaces', {
         headers: {
@@ -26,6 +27,7 @@ export function SpaceProvider({ children }) {
       .catch(error => {
         console.error('Error fetching space data:', error);
       });
+    }
   }, []);
 
   const contextValue = {

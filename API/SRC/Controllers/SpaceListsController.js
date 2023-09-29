@@ -8,8 +8,8 @@ const SpaceListsdata = async (req, res) => {
       for (const result of list) {
       jsonresult= JSON.parse(result.jsonvalue);
 
-    }    
-    res.json(jsonresult);
+      }    
+      res.json(jsonresult);
       
     } 
     

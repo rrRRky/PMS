@@ -15,8 +15,10 @@ const Editsubspace = () => {
     spaceId:'',
     isActive: false,
   });
+  console.log(role.spaceId);
   const [isActive, setIsActive] = useState(false);
   const [spaceData, setspaceData] = useState(null);
+  const [spaceDataID, setspaceDataID] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -59,11 +61,13 @@ const Editsubspace = () => {
         name: spaceData.name,
         description: spaceData.description,
         iconUrl: spaceData.iconUrl,
-        spaceId: spaceData.id,
+        spaceId: spaceData.spaceId,
         isActive: spaceData.isActive,
       });
       console.log(role);
+      console.log(spaceData);
       setIsActive(spaceData.isActive);
+      setspaceDataID(spaceData.spaceId);
     } catch (error) {
       console.error('Error fetching module details:', error);
     }
@@ -130,15 +134,26 @@ const Editsubspace = () => {
       if (response.status === 200) {
         console.log('Module updated successfully');
         navigate('/sub-space');
-      } else {
+      } if(response.status !== 200) {
         console.error('Failed to update module');
-        console.log(response);
+        alert(response.data.error);
+        console.log(response , response.data.error);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
-
+console.log(spaces.find(space => space.value === SelectedspaceID));
+console.log(role.spaceId);
+console.log(spaceDataID);
   return (
 
     <div>
@@ -160,7 +175,7 @@ const Editsubspace = () => {
                       <form onSubmit={handleSubmit}>
                         <div className='row'>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="code">Space code:</label>
+                            <label className="mb-2 fw-bold" htmlFor="code">Code:</label>
                             <input
                               type="text"
                               id="code"
@@ -172,7 +187,7 @@ const Editsubspace = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="name">Space Name:</label>
+                            <label className="mb-2 fw-bold" htmlFor="name">Name:</label>
                             <input
                               type="text"
                               id="name"
@@ -184,7 +199,7 @@ const Editsubspace = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="description">Space description:</label>
+                            <label className="mb-2 fw-bold" htmlFor="description">Description:</label>
                             <input
                               type="text"
                               id="description"
@@ -196,7 +211,7 @@ const Editsubspace = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="iconUrl">Space iconUrl:</label>
+                            <label className="mb-2 fw-bold" htmlFor="iconUrl">Icon Name:</label>
                             <input
                               type="text"
                               id="iconUrl"
@@ -208,10 +223,10 @@ const Editsubspace = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="iconUrl">Space iconUrl:</label>
-                            <select className='form-control form-select' id="spaceId" name="spaceId" value={role.id} onChange={handlespaceIDChange}>
+                            <label className="mb-2 fw-bold" htmlFor="iconUrl">Select Space:</label>
+                            <select className='form-control form-select' id="spaceId" name="spaceId" value={spaces.find(space => space.value === SelectedspaceID)} onChange={handlespaceIDChange}>
                               {spaces.map(space => (
-                                <option key={space.id} value={space.id}>
+                                <option key={space.id} value={space.id} >
                                   {space.name}
                                 </option>
                               ))}

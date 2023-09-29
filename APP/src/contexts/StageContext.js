@@ -14,6 +14,7 @@ export function StageProvider({ children }) {
   useEffect(() => {
     // Fetch stage data from API
     const userToken = localStorage.getItem('token');
+    if (userToken) {
     console.log(userToken);
     axios.get(API_URL + 'Stages', {
         headers: {
@@ -26,6 +27,7 @@ export function StageProvider({ children }) {
       .catch(error => {
         console.error('Error fetching stage data:', error);
       });
+    }
   }, []);
 
   const contextValue = {

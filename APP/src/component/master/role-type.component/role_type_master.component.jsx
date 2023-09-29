@@ -88,7 +88,7 @@ const RoleComponent = () => {
       maxWidth: 130,
       cellRendererFramework: BtnCellRenderer,
     },
-    { field: 'roleName', headerName: 'Role Name' },
+    { field: 'roleName', headerName: 'Name' },
     { field: 'createdByName', headerName: 'Created By', valueGetter: (params) => getUsername(params.data.createdByName)},
     { field: 'createdOn', headerName: 'Created On', minWidth: 220,valueGetter: (params) => formatDate(params.data.createdOn)},
     { field: 'updatedByName', headerName: 'Updated By', valueGetter: (params) => getUsername(params.data.updatedByName)},

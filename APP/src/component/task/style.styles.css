@@ -1,0 +1,533 @@
+.mainModalWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+
+.rowtwoWrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border-bottom:1px solid #ccc
+}
+
+.modalHeadermiddleWrapper {
+    display: flex;
+    width: 100%;
+}
+
+.modalHeadermiddleInnerWrapper {
+    display: flex;
+}
+
+.modalwrapper {
+    display: flex;
+    width: 100%;
+    padding-bottom: 5px;
+}
+
+.modalHeadermiddleInnerWrapper input.form-control {
+    height: 38px;
+}
+.ProjectBreadcum {
+    margin-left: 14px;
+    margin-bottom: 5px;
+}
+.ProjectBreadcum h4{
+    font-weight: 600;
+    margin-bottom: 0px;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    align-items: center;
+    height: 40px;
+    color:#000000;
+}
+.headerSingleStage {
+    font-size: 14px;
+    text-align: center;
+    color: #fff;
+    cursor: default;
+    margin: 0 3px;
+    padding: 10px 10px 10px 10px;
+    min-width: 140px;
+    text-decoration: unset;
+    float: left;
+    position: relative;
+    background-color: #626061;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.headerSingleStage:before,
+.headerSingleStage:after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: -16px;
+    width: 0;
+    height: 0;
+    border-top: 21px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 17px solid #626061;
+    z-index: 2;
+    transition: border-color 0.2s ease;
+}
+.headerSingleStage span{
+    color:#fff;
+}
+.ProjectBreadcum {
+    margin-left: 14px;
+    margin-bottom: 5px;
+}
+
+.taskStageListOuter {
+    display: flex;
+    width: 100%;
+    overflow-y: hidden;
+}
+
+.taskStageListOuter::-webkit-scrollbar {
+    width: 6px; 
+    height:5px; 
+    overflow-y: auto;
+}
+/* .taskStageListOuter:hover{
+    overflow: auto;
+    overflow-y: hidden;
+    width: 6px; 
+    height:10px;
+} */
+
+/* Custom Webkit Scrollbar */
+/* http://css-tricks.com/custom-scrollbars-in-webkit/ */
+
+.taskStageListOuter::-webkit-scrollbar:hover {
+    height: 5px;
+    width: 40px;
+}
+
+
+.taskStageListOuter::-webkit-scrollbar-thumb {
+    background-color: rgb(243, 243, 243);
+}
+.taskStageListOuter::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(224, 224, 224);
+}
+.taskStageListOuter:hover::-webkit-scrollbar-corner {
+    width: 40px;
+}
+
+.taskStageListOuter::-webkit-scrollbar-track-piece {
+    background-color: #efefef;
+}
+
+.taskStageListOuter::-webkit-scrollbar-thumb:vertical {
+    background-color: #666;
+}
+
+.headerSingleStage:before {
+    right: auto;
+    left: 0;
+    border-left: 17px solid #2c2c2c;
+    z-index: 0;
+}
+
+.headerSingleStage:first-child:before {
+    border: none;
+}
+
+.headerSingleStage:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+
+.headerStageinputouter input.form-control#txtName {
+    height: 41px;
+    border-radius: 0px;
+    margin: 0px 10px;
+    width: 380px;
+}
+
+.headerSingleStage.completedStage {
+    background-color: #008143;
+    color: #fff;
+}
+
+.headerSingleStage.completedStage:after {
+    border-left: 17px solid #008143;
+}
+
+.headerSingleStage.currentStage {
+    background-color: #001d33;
+    color: #fff;
+}
+
+.headerSingleStage.currentStage:after {
+    border-left: 17px solid #001d33;
+}
+
+.headerSingleStage.finsihStageStep {
+    min-width: 42px;
+    padding-left: 0;
+    background-color: #514c4c;
+}
+
+.headerSingleStage.finsihStageStep:after {
+    border-left: 17px solid #514c4c;
+    right: -17px;
+}
+
+.headerSingleStage.finsihStageStep .singleStageArrow {
+    position: relative;
+    right: -7px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 25px;
+}
+
+.creatediMGphoto {
+    width: 36px;
+    height: 36px;
+}
+
+.ProjectBreadcum {
+    margin-left: 14px;
+    margin-bottom: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.modalwrapperonebgColor , .modalwrappertwobgColor {
+    /* background-color: #ba6019; */
+}
+
+.rowoneWrapper {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.modalHeaderbottomleftWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+}
+
+.modalHeaderbottomWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.autoOuterLayer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modalHeaderbottomleftWrapper {
+    margin: 0px;
+}
+.rowthreeWrapper {
+    border-bottom: 1px solid #ccc;
+    margin-top: 10px;
+    position: relative;
+}
+.autoOuterLayermultiselect{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+.optionalChooseAvatar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.selectedAvatars {
+    display: flex;
+    position: absolute;
+    top: -40px;
+    left: 10px;
+    z-index: 99;
+    display: none;
+}
+
+.autoOuterLayermultiselect:hover .selectedAvatars {
+    display: flex;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: -1px 5px 20px 0px;
+    padding: 4px 10px;
+    border-radius: 5px;
+}
+.selectedAvatars .MuiAvatar-circular {
+    border: 3px solid #ccc;
+}
+.modalHeaderbottommiddleWrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+.absolutecalender .react-datepicker {
+    font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+    font-size: 0.8rem;
+    background-color: #fff;
+    color: #000;
+    border: 1px solid #aeaeae;
+    border-radius: 0.3rem;
+    display: inline-block;
+    position: absolute!important;
+}
+
+.content {
+    height: 74vh;
+    overflow: hidden;
+    position: relative;
+}
+.content .contact-profile {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background: #f5f5f5;
+}
+.content .contact-profile img {
+    width: 40px;
+    border-radius: 50%;
+    float: left;
+    margin: 9px 12px 0 9px;
+}
+.content .messages {
+    height: auto;
+    min-height: calc(100% - 125px);
+    max-height: calc(100% - 125px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 10px 15px;
+}
+.content .messages ul li {
+    display: inline-block;
+    clear: both;
+    float: left;
+    margin: 15px 15px 5px 15px;
+    width: calc(100% - 25px);
+    font-size: 0.9em;
+}
+.content .messages ul li.sent img {
+    margin: 6px 8px 0 0;
+}
+.content .messages ul li.sent p {
+    background: #435f7a;
+    color: #f5f5f5;
+}
+.content .message-input {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 99;
+    height: 65px;
+    border-top: 1px solid #ccc;
+}
+.content .message-input .wrap {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.content .message-input .wrap textarea {
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    width: calc(100% - 50px);
+    padding: 11px 32px 10px 8px;
+    font-size: 0.8em;
+    color: #32465a;
+    border: 0px;
+    height: 65px;
+}
+.content .message-input .wrap button {
+    float: right;
+    border: none;
+    padding: 12px 0;
+    cursor: pointer;
+    color: #f5f5f5;
+    margin-right:5px;
+}
+.activity-feed {
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+.modalwrapperfourbgColor {
+    display: block;
+}
+
+.dynamicformBox input[type="checkbox"] , 
+.dynamicformBox input[type="radio"]{
+    width: unset!important;
+    background-color: initial;
+    cursor: default;
+    appearance: auto;
+    box-sizing: border-box;
+    margin: 3px 3px 3px 4px;
+    padding: initial;
+    border: initial;
+}
+.modalBodyMiddleOuter {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+.rowfourWrapper {
+    height: 74vh;
+}
+
+.modalBodyLeftOuter , .modalBodyMiddleOuter ,.modalBodyRightOuter {
+    height: 74vh;
+}   
+
+.comment.comment-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+
+.comment.comment-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.comment .comment-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.comment-right .user-comment-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    flex-direction: column;
+    margin-right: 5px;
+}
+
+.comment-left .user-comment-info {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-right: 5px;
+}
+.comment-left .user-comment-info {
+    margin-left: 5px;
+}
+.comment-right .user-comment-info .commentTiming {
+    font-size: 10px;
+    font-weight: 600;
+    color:#001d33;
+}
+.comment-right .user-comment-info .commentTiming i{
+    color:#333;
+    font-size: 10px;
+    margin: 0px 5px;
+}
+
+.comment-left .user-comment-info .commentTiming {
+    font-size: 10px;
+    font-weight: 600;
+    color:#001d33;
+}
+.comment-left .user-comment-info .commentTiming i{
+    color:#333;
+    font-size: 10px;
+    margin: 0px 5px;
+}
+.comment-left .comment-content {
+    flex-direction: row-reverse;
+}
+.usercommentAvatar {
+    height: 30px!important;
+    width: 30px!important;
+}
+.activity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0px;
+    color: #c7c7c7;
+}
+.contact-profile h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    margin: 0px;
+}
+
+.modalBodyMiddleOuter {
+    position: relative;
+}
+.subTaskOpenButton {
+    position: absolute!important;
+    bottom: 20px;
+    right: 30px;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%!important;
+    -webkit-border-radius: 50%!important;
+    -moz-border-radius: 50%!important;
+    -ms-border-radius: 50%!important;
+    -o-border-radius: 50%!important;
+}
+.closebuttonmodalpopup{
+    z-index:9;
+}
+
+.myactivitypopover .css-3bmhjh-MuiPaper-root-MuiPopover-paper {
+    left: 49%!important;
+    width: 50%!important;
+}
+
+
+
+/* floating input box  */
+.dynamicformLabel{
+    position: relative;
+    top: 15px;
+    right: -4px;
+    max-width: 200px;
+    width: auto;
+    background-color: #fff;
+    padding-left: 5px;
+    font-weight: 500;
+}
+.dynamicformInput {
+    border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+    -moz-border-radius: 0px!important;
+    -ms-border-radius: 0px!important;
+    -o-border-radius: 0px!important;
+}
+.dynamicformBox {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.TaskBottomLayerOutlayer {
+    margin-top: 20px;
+}

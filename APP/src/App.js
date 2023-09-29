@@ -76,23 +76,25 @@
 
 
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
+// import { BrowserRouter as Router, Routes, Route, Navigate, Outlet, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate,  useLocation } from "react-router-dom";
 
 import Dashboard from "./routes/dashboard/dashboard.component";
 
 import Authentication from "./routes/authentication/authentication.component";
 
 import Navigation from "./routes/navigation/navigation.component";
-// import Sidebar from "./component/sidebar/sidebar.component";
+
+// import Layout from "./utils/layout";
 // import ActionMaster from "./component/master/action.master.component/action_master.component";
 
-import RolePermissionMaster from "./component/master/roles-permission.component/roles-permission.component";
 
 import UserComponent from "./component/master/user.component/view-user.component";
 import EditUser from "./component/master/user.component/edit-user.component";
 
 import RoleComponent from "./component/master/role-type.component/role_type_master.component";
 import EditRole from "./component/master/role-type.component/edit_role_type.component";
+import RolePermissionMaster from "./component/master/roles-permission.component/roles-permission.component";
 
 import StageComponent from "./component/master/stage.component/view-stage.component";
 import EditStage from "./component/master/stage.component/edit-stage.component";
@@ -126,6 +128,8 @@ import EditControl from "./component/master/control.component/edit-control.compo
 import FunctionComponent from "./component/master/function.component/view-function.component";
 import EditFunction from "./component/master/function.component/edit-function.component"; 
 
+import TaskViewComponent from "./component/task/view-task.component";
+
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./assets/CSS/globalTheme/light.theme.styles.css";
@@ -143,6 +147,7 @@ function App() {
     // Check if theme preference exists in local storage
     const storedTheme = localStorage.getItem("theme");
     document.body.className = storedTheme || "light";
+
   }, []);
 
   const toggleDarkMode = () => {
@@ -162,7 +167,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <AppRoutes isAuthenticated={isAuthenticated} toggleDarkMode={toggleDarkMode} />
+        <AppRoutes className="abcd" isAuthenticated={isAuthenticated} toggleDarkMode={toggleDarkMode} />
       </Router>
     </ThemeProvider>
   );
@@ -181,8 +186,7 @@ function AppRoutes({ isAuthenticated, toggleDarkMode }) {
 
   return (
     <Routes>
-      <Route  element=
-      {<Navigation toggleDarkMode={toggleDarkMode}> <Outlet /> </Navigation> } >
+      <Route element={ <Navigation />}>
         <Route path="dashboard" element={<Dashboard />} />
 
         <Route path="roles" element={<RoleComponent />} />
@@ -225,6 +229,8 @@ function AppRoutes({ isAuthenticated, toggleDarkMode }) {
 
         <Route path="users" element={<UserComponent />} /> 
         <Route path="edit-user/:id" element={<EditUser />} /> 
+
+        <Route path="/spacelistTask/:id" element={<TaskViewComponent/>} />
         
       </Route>
       <Route path="/" element={ isAuthenticated ? ( <Navigate to={lastVisitedPage} replace /> ) : ( <Authentication /> ) } />

@@ -19,6 +19,8 @@ const EditTemplateDetails = () => {
     isEnable: '',
     isVisible: '',
     defaultValue: '',
+    listValue: '',
+    sqlQuery:'',
     inOrder: '',
     roleIdVisible: '',
     isActive: false,
@@ -80,6 +82,8 @@ const EditTemplateDetails = () => {
         isEnable: templateDetailData.isEnable,
         isVisible: templateDetailData.isVisible,
         defaultValue: templateDetailData.defaultValue,
+        sqlQuery:templateDetailData.sqlQuery,
+        listValue: templateDetailData.listValue,
         inOrder: templateDetailData.inOrder,
         roleIdVisible: templateDetailData.roleIdVisible,
         isActive: templateDetailData.isActive,
@@ -90,7 +94,7 @@ const EditTemplateDetails = () => {
       console.error('Error fetching Template details:', error);
     }
   };
-
+console.log(ContextControlId);
   const handleInputChange = event => {
 
     const { name, value, type, checked } = event.target;
@@ -133,14 +137,16 @@ const EditTemplateDetails = () => {
 
   const handleisEnableChange = (event) => {
     const isEnableValue = event.target.value === 'true';
-    setRole(prevRole => ({ ...prevRole, roleId: isEnableValue })); 
     setisEnable(isEnableValue);
+    setRole((prevRole) => ({ ...prevRole, isEnable: isEnableValue })); 
+    console.log(isEnableValue);
   };
   
   const handleisVisibleChange = (event) => {
     const isVisibleValue = event.target.value === 'true';
-    setRole(prevRole => ({ ...prevRole, roleId: isVisibleValue })); 
     setisVisible(isVisibleValue);
+    setRole((prevRole) => ({ ...prevRole, isVisible: isVisibleValue }));
+    console.log(isVisibleValue);
   };
 
   const handleSubmit = async (event) => {
@@ -161,13 +167,15 @@ const EditTemplateDetails = () => {
       const payload = {
         id : templateID,
         templateId: role.templateId,
-        controlId: role.controlId,
+        controlId: controlId,
         valueTypeId: role.valueTypeId,
         labelName: role.labelName,
         width: role.width,
-        isEnable: role.isEnable,
-        isVisible: role.isVisible,
+        isEnable: isaEnable,
+        isVisible: isaVisible,
         defaultValue: role.defaultValue,
+        listValue:role.listValue,
+        sqlQuery:role.sqlQuery,
         inOrder: role.inOrder,
         roleIdVisible: role.roleIdVisible,
         updatedBy: userID,
@@ -192,8 +200,16 @@ const EditTemplateDetails = () => {
         console.log(response);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -250,6 +266,18 @@ const EditTemplateDetails = () => {
                             </select>
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
+                            <label className="mb-2 fw-bold" htmlFor="sqlQuery">Sql Query:</label>
+                            <input
+                              type="text"
+                              id="sqlQuery"
+                              className='form-control'
+                              name="sqlQuery"
+                              value={role.sqlQuery || ''}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
                             <label className="mb-2 fw-bold" htmlFor="labelName">Label Name:</label>
                             <input
                               type="text"
@@ -281,10 +309,13 @@ const EditTemplateDetails = () => {
                               name="isEnable"
                               value={isaEnable}
                               onChange={handleisEnableChange}
-                            > 
-                              <option> Select Option</option>
-                              <option value={true}>True</option>
-                              <option value={false}>False</option>
+                            >
+                              <option value="true" selected={isaEnable === true}>
+                                True
+                              </option>
+                              <option value="false" selected={isaEnable === false}>
+                                False
+                              </option>
                             </select>
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
@@ -296,9 +327,12 @@ const EditTemplateDetails = () => {
                               value={isaVisible}
                               onChange={handleisVisibleChange}
                             >
-                              <option> Select Option</option>
-                              <option value={true}>True</option>
-                              <option value={false}>False</option>
+                              <option value="true" selected={isaVisible === true}>
+                                True
+                              </option>
+                              <option value="false" selected={isaVisible === false}>
+                                False
+                              </option>
                             </select>
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
@@ -309,6 +343,18 @@ const EditTemplateDetails = () => {
                               className='form-control'
                               name="defaultValue"
                               value={role.defaultValue || ''}
+                              onChange={handleInputChange}
+                              required
+                            />
+                          </div>
+                          <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
+                            <label className="mb-2 fw-bold" htmlFor="listValue">List Value:</label>
+                            <input
+                              type="text"
+                              id="listValue"
+                              className='form-control'
+                              name="listValue"
+                              value={role.listValue || ''}
                               onChange={handleInputChange}
                               required
                             />
@@ -326,7 +372,7 @@ const EditTemplateDetails = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="roleIdVisible">Role Id Visible:</label>
+                            <label className="mb-2 fw-bold" htmlFor="roleIdVisible">Visible to Role:</label>
                             <select className='form-control form-select' id="roleIdVisible" value={roleIdVisible} name="roleIdVisible"  onChange={handleroleIdVisibleChange}>
                               <option disabled selected>Select Role</option>
                               {ContextRoleId.map(CRoleId => (

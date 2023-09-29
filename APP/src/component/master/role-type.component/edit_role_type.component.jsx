@@ -128,7 +128,7 @@ const EditRole = () => {
           <div className='container-fluid'>
             <div className='row'>
               <div className='col-11 mb-3 mt-3 d-flex justify-content-start align-items-start'>
-                <h2>Edit Module</h2>
+                <h2>Edit Role</h2>
               </div>
             </div>
           </div>
@@ -140,7 +140,7 @@ const EditRole = () => {
                       <form onSubmit={handleSubmit}>
                         <div className='row'>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="roleName">Function Name:</label>
+                            <label className="mb-2 fw-bold" htmlFor="roleName">Name:</label>
                             <input
                               type="text"
                               id="roleName"

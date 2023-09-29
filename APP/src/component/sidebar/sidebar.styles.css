@@ -95,6 +95,8 @@
     visibility: visible;
     display:flex;
     padding-left:10px;
+    justify-content: space-between;
+    width: 100%;
 }
 .sidebar:hover .sidenavClosed .linkTextClosed a.nav-link {
     display: flex;

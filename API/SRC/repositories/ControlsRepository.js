@@ -3,7 +3,7 @@ const Controls = require("../models/Controls");
 
 class ControlsRepository 
 {
-  async Controlsdata(userId){
+  async Controlsdata(){
     try{
       return await sequelize.query('EXEC sp_FatchControlsData');
     }

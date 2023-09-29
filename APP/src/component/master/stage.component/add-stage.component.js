@@ -145,8 +145,13 @@ export default function AddStageComponent({ updateGridData }) {
         console.log(payload);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        }
+      }
   };
 
   return (
@@ -169,7 +174,7 @@ export default function AddStageComponent({ updateGridData }) {
             </Typography>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="name">Stage Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="name">Name:</label>
                     <input
                     type="text"
                     id="name"
@@ -181,7 +186,7 @@ export default function AddStageComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="descriptions">Stage Description:</label>
+                    <label className="mb-2 fw-bold" htmlFor="descriptions">Description:</label>
                     <input
                     type="text"
                     id="descriptions"
@@ -193,7 +198,7 @@ export default function AddStageComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="inOrder">Stage Order:</label>
+                    <label className="mb-2 fw-bold" htmlFor="inOrder">inOrder:</label>
                     <input
                     type="text"
                     id="inOrder"

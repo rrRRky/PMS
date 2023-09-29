@@ -14,6 +14,7 @@ export function ControlTypeProvider({ children }) {
   useEffect(() => {
     // Fetch Lookup data from API
     const userToken = localStorage.getItem('token');
+    if (userToken) {
     console.log(userToken);
     axios.get(API_URL + 'Lookup/LookupData?type=CTRL', {
         headers: {
@@ -26,6 +27,7 @@ export function ControlTypeProvider({ children }) {
       .catch(error => {
         console.error('Error fetching Lookup data:', error);
       });
+    }
   }, []);
 
   const contextValue = {

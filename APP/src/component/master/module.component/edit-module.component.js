@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import API_URL from '../../../config';
 import { useParams, useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
+import { useModuleCategoryContext } from '../../../contexts/ModuleCategoryContext';
 import Sidebar from '../../sidebar/sidebar.component';
+import $ from 'jquery';
+
 
 const EditModule = () => {
   const [role, setRole] = useState({
@@ -18,9 +21,13 @@ const EditModule = () => {
   const [moduleData, setModuleData] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
+  const { ModuleCategoryList } = useModuleCategoryContext();
+  const [SelectedModuleCategory, setSelectedModuleCategory] = useState('');
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [Name, setUsername] = useState(localStorage.getItem('Name'));
   const [ID, setUserID] = useState(localStorage.getItem('ID'));
+
+ 
 
   useEffect(() => {
     const storedUserData = localStorage.getItem('userSession');
@@ -32,6 +39,12 @@ const EditModule = () => {
       fetchModuleDetails(userToken, id); 
     }
   }, [id]);
+
+  useEffect(() => {
+    $('#sortOrder').on('input', function() {
+      $(this).val($(this).val().replace(/\D/g, ''));
+    });
+  }, []); 
 
   const fetchModuleDetails = async (userToken, moduleID) => {
     try {
@@ -81,6 +94,15 @@ const EditModule = () => {
     }
   };
 
+  
+  const handleModuleCategoryChange = (event) => {
+    const selectedModuleCategory = event.target.value;
+    setSelectedModuleCategory(selectedModuleCategory); // Update the selected role ID
+    setRole(prevRole => ({ ...prevRole, roleId: selectedModuleCategory })); // Update roleId in the role state
+    console.log(selectedModuleCategory );
+  };
+  
+  console.log(ModuleCategoryList , SelectedModuleCategory);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -99,7 +121,7 @@ const EditModule = () => {
       const payload = {
         id : moduleID,
         moduleName: role.moduleName,
-        moduleCategoryID: role.moduleCategoryID,
+        moduleCategoryID: SelectedModuleCategory,
         routingPage: role.routingPage,
         sortOrder: role.sortOrder,
         moduleIconUrl: role.moduleIconUrl,
@@ -108,6 +130,7 @@ const EditModule = () => {
         isActive: role.isActive,
       };
       console.log(payload);
+      console.log(role);
       const response = await fetch(`${API_URL}Module/UpdateModules`, {
         method: 'POST',
         headers: {
@@ -125,8 +148,16 @@ const EditModule = () => {
         console.log(response);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -149,8 +180,19 @@ const EditModule = () => {
                     <div className='col-12 m-auto p-4 rounded rounded-3 border border-1 border-success'>
                       <form onSubmit={handleSubmit}>
                         <div className='row'>
+                        <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
+                            <label className="mb-2 fw-bold" htmlFor="stageId">Module Category:</label>
+                            <select className='form-control form-select' id="moduleCategoryID" name="moduleCategoryID" value={SelectedModuleCategory} onChange={handleModuleCategoryChange}>
+                              <option  disabled selected>Select</option>
+                              {ModuleCategoryList.map(ModuleCategory => (
+                                  <option key={ModuleCategory.id} value={ModuleCategory.id}>
+                                    {ModuleCategory.name}
+                                  </option>
+                                ))}
+                              </select>
+                          </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="moduleName">Module Name:</label>
+                            <label className="mb-2 fw-bold" htmlFor="moduleName">Name:</label>
                             <input
                               type="text"
                               id="moduleName"
@@ -162,7 +204,7 @@ const EditModule = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="routingPage">Module Link:</label>
+                            <label className="mb-2 fw-bold" htmlFor="routingPage">Link:</label>
                             <input
                               type="text"
                               id="routingPage"
@@ -174,7 +216,7 @@ const EditModule = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="moduleIconUrl">Module Icon:</label>
+                            <label className="mb-2 fw-bold" htmlFor="moduleIconUrl">Icon:</label>
                             <input
                               type="text"
                               id="moduleIconUrl"
@@ -186,7 +228,7 @@ const EditModule = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="sortOrder">Module Order:</label>
+                            <label className="mb-2 fw-bold" htmlFor="sortOrder">Order:</label>
                             <input
                               type="text"
                               id="sortOrder"

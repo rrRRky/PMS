@@ -1,8 +1,10 @@
 const sequelize = require('../Config/dbconfig');
+const ADconfig = require('../Config/AD_config')
 const User = require("../models/Users");
 // const bcrypt = require('bcrypt');
 const bcryptUtils = require('../Authentication/bycriptUtils')
 
+//----------GetUserData-------------
 class UserRepository 
 {
   async getdata(){
@@ -17,8 +19,6 @@ class UserRepository
   
   async InsertUpdateUsers(jsonData) {
     try {    
-    
-
       const query = `EXEC InsertUpdateUsers @jsonData = :jsonData`;      
       const result = await sequelize.query(query, {
         replacements: { jsonData },

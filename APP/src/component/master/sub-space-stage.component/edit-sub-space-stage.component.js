@@ -141,8 +141,16 @@ const EditsubspaceStage = () => {
         console.log(response);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -154,7 +162,7 @@ const EditsubspaceStage = () => {
                       <form onSubmit={handleSubmit}>
                         <div className='row'>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="spaceListId">Space List Id:</label>
+                            <label className="mb-2 fw-bold" htmlFor="spaceListId">Id:</label>
                             <input
                               type="text"
                               id="spaceListId"
@@ -167,7 +175,7 @@ const EditsubspaceStage = () => {
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
                             <label className="mb-2 fw-bold" htmlFor="stageId">Stage Id:</label>
-                            <select className='form-control form-select' id="stageId" name="stageId" value={role.id} onChange={handlespaceIDChange}>
+                            <select className='form-control form-select' id="stageId" name="stageId" value={SelectedspaceID} onChange={handlespaceIDChange}>
                               {stages.map(staged => (
                                   <option key={staged.id} value={staged.id}>
                                     {staged.name}
@@ -176,7 +184,7 @@ const EditsubspaceStage = () => {
                               </select>
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="remark">Space remark:</label>
+                            <label className="mb-2 fw-bold" htmlFor="remark">Remark:</label>
                             <input
                               type="text"
                               id="remark"
@@ -188,7 +196,7 @@ const EditsubspaceStage = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="inOrder">Space inOrder:</label>
+                            <label className="mb-2 fw-bold" htmlFor="inOrder">inOrder:</label>
                             <input
                               type="text"
                               id="inOrder"
@@ -200,7 +208,7 @@ const EditsubspaceStage = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="templateId">Space templateId:</label>
+                            <label className="mb-2 fw-bold" htmlFor="templateId">Template Id:</label>
                             <select className='form-control form-select' id="templateId" name="templateId" value={role.id} onChange={handletemplateIdChange}>
                               {ContextTemplateId.map(TemplateIdsel => (
                                 <option key={TemplateIdsel.id} value={TemplateIdsel.id}>
@@ -243,14 +251,14 @@ const EditsubspaceStage = () => {
                             </div>
                           </div>
                           <div className='col-12 form-group mb-1 text-left mt-4'>
-                            <button className='btn btn-success' type="submit">Save</button>
+                            <button className='btn btn-success' type="submit" onClick="functionclickrun()">Save</button>
                           </div>
                         </div>
                       </form>
                     </div>
                   </div>
                 </Box>
-    </div>
+              </div>
 
   );
 };

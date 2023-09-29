@@ -174,7 +174,7 @@ export default function AddSpaceComponent({ updateGridData }) {
             </Typography>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="code">Space Code:</label>
+                    <label className="mb-2 fw-bold" htmlFor="code">Code:</label>
                     <input
                     type="text"
                     id="code"
@@ -186,7 +186,7 @@ export default function AddSpaceComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="name">Space Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="name">Name:</label>
                     <input
                     type="text"
                     id="name"
@@ -198,7 +198,7 @@ export default function AddSpaceComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="description">Space Description:</label>
+                    <label className="mb-2 fw-bold" htmlFor="description">Description:</label>
                     <input
                     type="text"
                     id="description"
@@ -210,7 +210,7 @@ export default function AddSpaceComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="iconUrl">Space Url Link:</label>
+                    <label className="mb-2 fw-bold" htmlFor="iconUrl">Icon Name:</label>
                     <input
                     type="text"
                     id="iconUrl"

@@ -16,7 +16,10 @@ const SpaceListStagesRouter = require('./SRC/routes/SpaceListStages_router');
 const TemplatesRouter = require('./SRC/routes/Templates_router');
 const TemplateDetailRouter = require('./SRC/routes/TemplateDetail_router');
 const LookUpRouter = require('./SRC/routes/LookUp_router');
-
+const ProjctTaskRouterHeader = require('./SRC/routes/ProjectTaskHeader_routes');
+const DynamicFieldForTLSRouter = require('./SRC/routes/DynamicFieldForTLS_router');
+const ProjectTaskDynamicFieldRouter =  require('./SRC/routes/ProjectTaskDynamicField_router');
+const SpaceAndListMenuRouter =  require('./SRC/routes/SpaceAndListMenu_router');
 
 // hvh
 
@@ -76,6 +79,18 @@ app.use("/api/TpltDtls",TemplateDetailRouter)
 
 //----------------LookUpRouter--------------
 app.use("/api/Lookup",LookUpRouter)
+
+//----------------ProjectTask--------------
+app.use("/api/PrjktTask",ProjctTaskRouterHeader)
+
+//----------------ProjectTaskDetails--------------
+app.use("/api/PrjktTskDtl",ProjectTaskDynamicFieldRouter)
+
+//----------------DynamicFieldsForTaskListStage--------------
+app.use("/api/DFFTLS",DynamicFieldForTLSRouter)
+
+//----------------SpaceAndListMenu--------------
+app.use("/api/Spc&ListMenu",SpaceAndListMenuRouter)
 
 
 

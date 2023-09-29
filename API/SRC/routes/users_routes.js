@@ -16,13 +16,14 @@ const {
 } = require('../Controllers/UsersControllers')
 
 const moduleCode='USR';
+
 //---users----
 router.route("/").get(authenticateToken(moduleCode,'V'),getUsers);
 router.route("/addUsers").post(authenticateToken(moduleCode,'A'),InsertUpdateUsers);
 router.route("/UpdateUsers").post(authenticateToken(moduleCode,'E'),InsertUpdateUsers);
 router.route('/login').post(loginUser);
-router.route('/ModuleRight').get(authenticateToken(moduleCode,'V'),getUserModulesRights);
-router.route('/ModuleAction').get(authenticateToken(moduleCode,'V'),GetModuleFunctionsForRole);
+router.route('/ModuleRight').get(authenticateToken('','V'),getUserModulesRights);
+router.route('/ModuleAction').get(authenticateToken('','V'),GetModuleFunctionsForRole);
 router.route('/Update/').put(authenticateToken,UpdateUser);
 router.route('/Activate').get(authenticateToken,ActivateUser);
 router.route('/Deactivate').get(authenticateToken,DeactivateUser);

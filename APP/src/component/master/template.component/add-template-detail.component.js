@@ -18,7 +18,9 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
   const [isEnable, setisEnable] = useState();
   const [isVisible, setisVisible] = useState();
   const [defaultValue, setdefaultValue] = useState('');
+  const [listValue, setlistValue] = useState('');
   const [inOrder, setinOrder] = useState('');
+  const [SqlQuery, setSqlQuery] = useState('');
   const [roleIdVisible, setroleIdVisible] = useState('');
   const { ContextTemplateId } = useTemplateIdContext();
   const { ContextControlId } = useControlIdContext();
@@ -49,13 +51,18 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
     const newValue = event.target.value === 'true';
     setisEnable(newValue);
   };
-  
+  const handleSqlQuerychnage=(event) => {
+    setSqlQuery(event.target.value);
+  }
   const handleisVisibleChange = (event) => {
     const newValue = event.target.value === 'true';
     setisVisible(newValue);
   };
   const handledefaultValueChange = (event) => {
     setdefaultValue(event.target.value);
+  }; 
+  const handlelistValueChange = (event) => {
+    setlistValue(event.target.value);
   }; 
   const handleinOrderChange = (event) => {
     setinOrder(event.target.value);
@@ -113,11 +120,17 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
       } else {
         // Handle error response
         console.error('Failed to add New Template Detail');
+        alert('Failed to add New Template Detail');
         console.log(payload);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } 
+      }
   };
 
   return (
@@ -159,20 +172,6 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         ))}
                       </select>
                     </div>
-                    {controlId === '12' && (
-                      <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="inOrder">SQL-Query:</label>
-                        <input
-                          type="text"
-                          id="inOrder"
-                          name="inOrder"
-                          className="form-control"
-                          value={inOrder}
-                          onChange={handleinOrderChange}
-                          placeholder="Enter SQL-Query"
-                        />
-                      </div>
-                    )}
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
                         <label className="mb-2 fw-bold" htmlFor="valueTypeId">Select Value Type:</label>
                         <select className='form-control form-select' id="valueTypeId" name="valueTypeId"  onChange={handlevalueTypeIdChange}>
@@ -184,8 +183,22 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         ))}
                       </select>
                     </div>
+                    {/* {controlId === '12' && ( */}
+                      <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+                        <label className="mb-2 fw-bold" htmlFor="SqlQuery">SQL-Query:</label>
+                        <input
+                          type="text"
+                          id="SqlQuery"
+                          name="SqlQuery"
+                          className="form-control"
+                          value={SqlQuery}
+                          onChange={handleSqlQuerychnage}
+                          placeholder="Enter SQL-Query"
+                        />
+                      </div>
+                     {/* )} */}
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="labelName">Template Label:</label>
+                        <label className="mb-2 fw-bold" htmlFor="labelName">Label:</label>
                         <input
                         type="text"
                         id="labelName"
@@ -197,7 +210,7 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         />
                     </div>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="width">Template Input Width:</label>
+                        <label className="mb-2 fw-bold" htmlFor="width">Input Width:</label>
                         <input
                         type="text"
                         id="width"
@@ -209,7 +222,7 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         />
                     </div>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="isEnable">Template Input IsEnable:</label>
+                        <label className="mb-2 fw-bold" htmlFor="isEnable">IsEnable:</label>
                         <select
                           className="form-control form-select"
                           id="isEnable"
@@ -223,7 +236,7 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         </select>
                     </div>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="isVisible">Template Input IsVisible:</label>
+                        <label className="mb-2 fw-bold" htmlFor="isVisible">IsVisible:</label>
                         <select
                           className="form-control form-select"
                           id="isVisible"
@@ -237,7 +250,7 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         </select>
                     </div>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="defaultValue">Template Input Defult Value:</label>
+                        <label className="mb-2 fw-bold" htmlFor="defaultValue">Defult Value:</label>
                         <input
                         type="text"
                         id="defaultValue"
@@ -249,7 +262,19 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         />
                     </div>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="inOrder">Template Input Order:</label>
+                        <label className="mb-2 fw-bold" htmlFor="listValue">List Value:</label>
+                        <input
+                        type="text"
+                        id="listValue"
+                        name="listValue"
+                        className="form-control"
+                        value={listValue}
+                        onChange={handlelistValueChange}
+                        placeholder="Enter Template Input Defult Value"
+                        />
+                    </div>
+                    <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+                        <label className="mb-2 fw-bold" htmlFor="inOrder">Order:</label>
                         <input
                         type="text"
                         id="inOrder"
@@ -261,7 +286,7 @@ export default function AddTemplateDetailComponent({ updateGridData }) {
                         />
                     </div>
                     <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
-                        <label className="mb-2 fw-bold" htmlFor="roleIdVisible">Select Template Role Visible:</label>
+                        <label className="mb-2 fw-bold" htmlFor="roleIdVisible">Visible to Role:</label>
                         <select className='form-control form-select' id="roleIdVisible" name="roleIdVisible"  onChange={handleroleIdVisibleChange}>
                         <option disabled selected>Select</option>
                         {ContextRoleId.map(CRoleId => (

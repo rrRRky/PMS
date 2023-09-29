@@ -120,8 +120,16 @@ const EditModuleCategory = () => {
         console.log(response);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -157,7 +165,7 @@ const EditModuleCategory = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="routingPage">Module Category Link:</label>
+                            <label className="mb-2 fw-bold" htmlFor="routingPage">Routing Link:</label>
                             <input
                               type="text"
                               id="routingPage"
@@ -169,7 +177,7 @@ const EditModuleCategory = () => {
                             />
                           </div>
                           <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                            <label className="mb-2 fw-bold" htmlFor="iconUrl">Module Icon:</label>
+                            <label className="mb-2 fw-bold" htmlFor="iconUrl">Icon:</label>
                             <input
                               type="text"
                               id="iconUrl"

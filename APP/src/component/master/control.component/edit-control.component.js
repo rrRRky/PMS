@@ -9,6 +9,7 @@ const EditControl = () => {
     id: '',
     controlName: '',
     type: '',
+    typeId: '',
     isActive: false, // Changed the value to a boolean
   });
   const [controlData, setControlData] = useState(null);
@@ -38,6 +39,7 @@ const EditControl = () => {
         throw new Error('Failed to fetch control details');
       }
       const responseData = await response.json();
+      
       if (!responseData || responseData.length === 0) {
         console.error('No control data found for the given ID');
         return;
@@ -48,8 +50,11 @@ const EditControl = () => {
         id: controlData.id,
         controlName: controlData.controlName,
         type: controlData.type,
+        typeId:controlData.typeId,
         isActive: controlData.isActive,
       });
+      
+      console.log(controlData);
     } catch (error) {
       console.error('Error fetching control details:', error);
     }
@@ -85,6 +90,7 @@ const EditControl = () => {
         id: controlID,
         controlName: role.controlName,
         type: role.type,
+        typeId: role.typeId,
         updatedBy: userID,
         updatedOn: currentTime,
         isActive: role.isActive,
@@ -106,8 +112,16 @@ const EditControl = () => {
         console.error('Failed to update control');
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -130,7 +144,7 @@ const EditControl = () => {
                     <form onSubmit={handleSubmit}>
                       <div className='row'>
                         <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                          <label className="mb-2 fw-bold" htmlFor="controlName">Control Name:</label>
+                          <label className="mb-2 fw-bold" htmlFor="controlName">Name:</label>
                           <input
                             type="text"
                             id="controlName"
@@ -142,7 +156,7 @@ const EditControl = () => {
                           />
                         </div>
                         <div className='col-lg-3 col-md-4 col-sm-6 col-12 form-group mb-3'>
-                          <label className="mb-2 fw-bold" htmlFor="type">Control Type:</label>
+                          <label className="mb-2 fw-bold" htmlFor="type">Type:</label>
                           <input
                             type="text"
                             id="type"

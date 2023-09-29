@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
 import API_URL from '../../../config';
 import { useNavigate } from 'react-router-dom';
+import $ from 'jquery';
 
 const SideDrawer = React.forwardRef(function SideDrawer(props, ref) {
   const { children, open, onClose } = props;
@@ -68,6 +69,12 @@ export default function AddFunctionComponent({ updateGridData }) {
     fetchModuleRights();
 
   }, []);
+
+  useEffect(() => {
+    $('#inOrder').on('input', function() {
+      $(this).val($(this).val().replace(/\D/g, ''));
+    });
+  }, []); 
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -164,7 +171,7 @@ export default function AddFunctionComponent({ updateGridData }) {
             </Typography>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="functionName">function Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="functionName">Name:</label>
                     <input
                     type="text"
                     id="functionName"
@@ -176,7 +183,7 @@ export default function AddFunctionComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="inOrder">function Order:</label>
+                    <label className="mb-2 fw-bold" htmlFor="inOrder">inOrder:</label>
                     <input
                     type="text"
                     id="inOrder"

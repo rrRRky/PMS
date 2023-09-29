@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
 import API_URL from '../../../config';
 import { useNavigate } from 'react-router-dom';
+import $ from 'jquery';
 
 const SideDrawer = React.forwardRef(function SideDrawer(props, ref) {
   const { children, open, onClose } = props;
@@ -101,8 +102,11 @@ export default function AddModuleComponent({ updateGridData }) {
     fetchModuleCategories();
   }, [moduleCategoryID]);
 
-
-
+  // useEffect(() => {
+  //   $('#sortOrder').on('input', function() {
+  //     $(this).val($(this).val().replace(/\D/g, ''));
+  //   });
+  // }, []); 
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -116,7 +120,9 @@ export default function AddModuleComponent({ updateGridData }) {
     setmoduleName(event.target.value);
   };  
   const handlesortOrderChange = (event) => {
-    setsortOrder(event.target.value);
+    // setsortOrder(event.target.value);
+    const numericValue = event.target.value.replace(/[^0-9]/g, '');
+    setsortOrder(numericValue);
   }; 
   const handleroutingPageChange = (event) => {
     setroutingPage(event.target.value);
@@ -197,8 +203,16 @@ export default function AddModuleComponent({ updateGridData }) {
         console.log(payloadCatID);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          // alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -232,7 +246,7 @@ export default function AddModuleComponent({ updateGridData }) {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="code">Module Code:</label>
+                    <label className="mb-2 fw-bold" htmlFor="code">Code:</label>
                     <input
                     type="text"
                     id="code"
@@ -244,7 +258,7 @@ export default function AddModuleComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="moduleName">Module Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="moduleName">Name:</label>
                     <input
                     type="text"
                     id="moduleName"
@@ -256,7 +270,7 @@ export default function AddModuleComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="moduleIconUrl">Module Icon:</label>
+                    <label className="mb-2 fw-bold" htmlFor="moduleIconUrl">Icon:</label>
                     <input
                     type="text"
                     id="moduleIconUrl"
@@ -268,7 +282,7 @@ export default function AddModuleComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="routingPage">Module Routing Link:</label>
+                    <label className="mb-2 fw-bold" htmlFor="routingPage">Routing Link:</label>
                     <input
                     type="text"
                     id="routingPage"
@@ -280,7 +294,7 @@ export default function AddModuleComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="sortOrder">Module Order:</label>
+                    <label className="mb-2 fw-bold" htmlFor="sortOrder">inOrder:</label>
                     <input
                     type="text"
                     id="sortOrder"

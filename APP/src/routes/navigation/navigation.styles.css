@@ -27,3 +27,6 @@ header.myNavBar{
     border: 1px solid #e9ebec;
     box-shadow: none!important;
 }
+.sidebar:hover .sidenavClosed .linkTextClosed a.nav-link.active span.active {
+    color: blue!important;
+}

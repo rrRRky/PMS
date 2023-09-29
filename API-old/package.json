@@ -1,0 +1,25 @@
+{
+  "name": "pms_nodejs",
+  "version": "1.0.0",
+  "description": "PMS_NodeJs_Api",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.1",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.4",
+    "mssql": "^9.1.2",
+    "nodemon": "^3.0.1",
+    "sequelize": "^6.32.1"
+  }
+}

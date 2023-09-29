@@ -6,8 +6,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { useSpring, animated } from '@react-spring/web';
 import API_URL from '../../../config';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useParams } from 'react-router-dom';
 import { useStageContext } from '../../../contexts/StageContext';
+// import { useSpaceListContext } from '../../../contexts/SpaceListContext';
 import { useTemplateIdContext } from '../../../contexts/lookupTemplateIdContext';
 
 const SideDrawer = React.forwardRef(function SideDrawer(props, ref) {
@@ -32,12 +33,14 @@ SideDrawer.propTypes = {
 
 export default function AddSubSpaceStageComponent({ updateGridData }) {
   const [open, setOpen] = useState(false);
-  const [spaceListId, setspaceListId] = useState('');
+  // const [spaceListId, setspaceListId] = useState('');
   const [inOrder, setinOrder] = useState('');
   const [remark, setremark] = useState('');
   const [stageId, setstageId] = useState('');
   const [templateId , settemplateId] = useState('');
   const { stages } = useStageContext();
+  const { id } = useParams();
+  // const {spacesList} = useSpaceListContext();
   const { ContextTemplateId } = useTemplateIdContext();
   const [UserName, setUsername] = useState(localStorage.getItem('userSession.Name'));
   const [ID, setID] = useState(localStorage.getItem('userSession.id'));
@@ -84,9 +87,10 @@ export default function AddSubSpaceStageComponent({ updateGridData }) {
     setOpen(false);
   };
 
-  const handleSpaceListIdChange = (event) => {
-    setspaceListId(event.target.value);
-  };  
+  // const handleSpaceListIdChange = (event) => {
+  //   const selectedSpaceListstageId = event.target.value;
+  //   setspaceListId(selectedSpaceListstageId);
+  // };  
   const handleInOrderChange = (event) => {
     setinOrder(event.target.value);
   }; 
@@ -132,7 +136,7 @@ export default function AddSubSpaceStageComponent({ updateGridData }) {
         const currentTime = new Date().toISOString();
         console.log(stageId);
         const payload = {
-          spaceListId,
+          spaceListId: id,
           stageId,
           inOrder,
           templateId,
@@ -161,10 +165,22 @@ export default function AddSubSpaceStageComponent({ updateGridData }) {
         // Handle error response
         console.error('Failed to add New Sub Space');
         console.log(payload);
-      }
-    } catch (error) {
-      console.error('Failed to send the request', error);
+        // Parse the response body as JSON to get the error message
+    const errorResponse = await response.json();
+    if (errorResponse.error) {
+      alert(`Error: ${errorResponse.error}`);
+    } else {
+      alert('Failed to add New Sub Space. Please check the input and try again.');
     }
+  }
+    } catch (error) {
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } 
+      }
   };
 
   return (
@@ -186,20 +202,18 @@ export default function AddSubSpaceStageComponent({ updateGridData }) {
               Add New Sub Space
             </Typography>
             <form onSubmit={handleSubmit}>
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <label className="mb-2 fw-bold" htmlFor="spaceListId">Sub Space Id:</label>
-                    <input
-                    type="text"
-                    id="spaceListId"
-                    name="spaceListId"
-                    className="form-control"
-                    value={spaceListId}
-                    onChange={handleSpaceListIdChange}
-                    placeholder="Enter Sub Space Code"
-                    />
-                </div>
+                    <select className='form-control form-select' id="spaceListId" name="spaceListId"  onChange={handleSpaceListIdChange}>
+                    {spacesList.map(stagedListed => (
+                      <option key={stagedListed.id} value={stagedListed.id}>
+                        {stagedListed.name}
+                      </option>
+                    ))}
+                  </select>
+                </div> */}
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="inOrder">Sub Space Stage Order:</label>
+                    <label className="mb-2 fw-bold" htmlFor="inOrder">inOrder:</label>
                     <input
                     type="text"
                     id="inOrder"
@@ -211,9 +225,11 @@ export default function AddSubSpaceStageComponent({ updateGridData }) {
                     />
                 </div>
                 <div className='mb-3'>
-                  <label className="mb-2 fw-bold" htmlFor="iconUrl">Sub Space Stage Id:</label>
+                  <label className="mb-2 fw-bold" htmlFor="iconUrl">Stage:</label>
                   <select className='form-control form-select' id="stageId" name="stageId"  onChange={handleStageIdChange}>
-                    {stages.map(staged => (
+                    {stages
+                    .filter(staged => staged.isActive === true)
+                    .map(staged => (
                       <option key={staged.id} value={staged.id}>
                         {staged.name}
                       </option>
@@ -221,7 +237,7 @@ export default function AddSubSpaceStageComponent({ updateGridData }) {
                   </select>
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="remark">Sub Space Stage Remark:</label>
+                    <label className="mb-2 fw-bold" htmlFor="remark">Remark:</label>
                     <input
                     type="text"
                     id="remark"
@@ -232,11 +248,13 @@ export default function AddSubSpaceStageComponent({ updateGridData }) {
                     placeholder="Enter Sub Space Description"
                     />
                 </div>
-                <div className="col-lg-3 col-md-4 col-sm-6 col-12 mb-3">
+                <div className="col-lg-12 mb-3">
                     <label className="mb-2 fw-bold" htmlFor="templateId">Template ID:</label>
                     <select className='form-control form-select' id="templateId" name="templateId"  onChange={handletemplateIdChange}>
                     <option disabled selected>Select Template Id</option>
-                    {ContextTemplateId.map(CTemplateId => (
+                    {ContextTemplateId
+                    .filter(ContextTemplateId => ContextTemplateId.isActive === true)
+                    .map(CTemplateId => (
                       <option key={CTemplateId.id} value={CTemplateId.id}>
                         {CTemplateId.name}
                       </option>

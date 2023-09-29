@@ -161,8 +161,16 @@ export default function AddSubSpaceComponent({ updateGridData }) {
         console.log(payload);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -185,7 +193,7 @@ export default function AddSubSpaceComponent({ updateGridData }) {
             </Typography>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="code">Sub Space Code:</label>
+                    <label className="mb-2 fw-bold" htmlFor="code">Code:</label>
                     <input
                     type="text"
                     id="code"
@@ -197,7 +205,7 @@ export default function AddSubSpaceComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="name">Sub Space Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="name">Name:</label>
                     <input
                     type="text"
                     id="name"
@@ -209,7 +217,7 @@ export default function AddSubSpaceComponent({ updateGridData }) {
                     />
                 </div>
                 <div className='mb-3'>
-                  <label className="mb-2 fw-bold" htmlFor="iconUrl">Sub Space iconUrl:</label>
+                  <label className="mb-2 fw-bold" htmlFor="iconUrl">Icon Name:</label>
                   <select className='form-control form-select' id="spaceId" name="spaceId"  onChange={handleSpaceIdChange}>
                     {spaces.map(space => (
                       <option key={space.id} value={space.id}>
@@ -219,7 +227,7 @@ export default function AddSubSpaceComponent({ updateGridData }) {
                   </select>
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="description">Sub Space Description:</label>
+                    <label className="mb-2 fw-bold" htmlFor="description">Description:</label>
                     <input
                     type="text"
                     id="description"
@@ -231,7 +239,7 @@ export default function AddSubSpaceComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="iconUrl">Sub Space Url Link:</label>
+                    <label className="mb-2 fw-bold" htmlFor="iconUrl">Url</label>
                     <input
                     type="text"
                     id="iconUrl"

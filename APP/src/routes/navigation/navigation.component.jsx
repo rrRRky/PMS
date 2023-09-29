@@ -135,28 +135,6 @@ function Navigation() {
     setAnchorElNotification(null);
   };
 
-  // const iconData = [
-  //   EcommIcon,
-  //   EInvoicingIcon,
-  //   HRMSIcon,
-  //   PMSIcon,
-  //   ProductIcon,
-  //   PurOrdrIcon,
-  //   SurveyIcon,
-  //   TVIcon
-  //   // Add more icon data objects as needed
-  // ];
-  // const tooltipTitle = [
-  //   "Ecomm App",
-  //   "EInvoicing App",
-  //   "HRMS App",
-  //   "PMS App",
-  //   "Product App",
-  //   "PurOrdr App",
-  //   "Survey App",
-  //   "TV App"
-  //   // Add more tooltip titles as needed
-  // ];
 
   // search bar 
   const Search = styled('div')(({ theme }) => ({

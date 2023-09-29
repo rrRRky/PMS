@@ -21,7 +21,7 @@ const authenticateToken =(muduleCode,functioncode) => { return    (req, res, nex
 
       const decodedToken = jwt.verify(token, TokenKey);    
       const modulePermission=await Roles_Permissions.IsAuthorizeModuleForRole(decodedToken.roleId,muduleCode,functioncode);    
-      if (muduleCode!='LKUP' &&  modulePermission.MsgFlag == 0) {
+      if (muduleCode!='' &&  modulePermission.MsgFlag == 0) {
         return res.status(401).json({ error: ' This request is Unauthorized!' });
       } 
     next();

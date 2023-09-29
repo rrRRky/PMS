@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const UsersRepository = require('../repositories/UsersRepository');
 const {comparePasswords,hashpassword} = require('../Authentication/bycriptUtils')
 const  TokenKey='J@y@n!t@';
+const ActiveDirectory = require('activedirectory');
+const AD_config = require('../Config/AD_config');
 
 // ---------------------------- GET /users ---------------------------
 const getUsers = async (req, res) => {
@@ -47,8 +49,22 @@ const loginUser = async (req, res) => {
 
     const jsonData = JSON.stringify(req.body);
 
-    const result = await UsersRepository.validateUser(jsonData);
     
+    // const ad = new ActiveDirectory(AD_config);
+    // ad.authenticate(req.body.userId, req.body.password, (err, auth) => {
+    //   if(auth){
+    //     console.log("Connect with AD..");
+    //      res.status(200).json({msg:"Connect with AD.."})
+    //   }
+    //   if (err) {
+    //     console.log('Connection failed with AD:', err);
+    //     res.status(500).json({error:'Connection failed with AD:', err})
+    //   }
+      
+    // });
+
+
+    const result = await UsersRepository.validateUser(jsonData);
     if(result.MsgFlag==0)
     {
       res.status(500).json({ error: result.Msg });
@@ -58,25 +74,10 @@ const loginUser = async (req, res) => {
     }
     else 
     {
-
         const expiresIn= '24h';
         const token1 = jwt.sign({ roleId:result.RoleId, }, TokenKey, { expiresIn }); // Change yourSecretKey
         res.status(200).json({ token:token1, expiresIn, id:result.Id,userId:req.body.userId, name:result.Name,roleId:result.RoleId,roleName:result.RoleName, userImage :result.UserImagePath});
          
-      
-
-        // try {
-        //   const decodedToken = jwt.verify(token1, TokenKey);
-          
-        //   if (decodedToken) {
-        //     const Rolename = decodedToken.roleName;
-        //     console.log('Role Nmae:', Rolename);
-        //   } else {
-        //     console.log('Invalid JWT');
-        //   }
-        // } catch (error) {
-        //   console.error('Error decoding JWT:', error.message);
-        // }
     }
 
   } catch (error) {

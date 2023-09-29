@@ -145,8 +145,16 @@ export default function AddModuleCategoryComponent({ updateGridData }) {
         console.log(payloadCatID);
       }
     } catch (error) {
-      console.error('Failed to send the request', error);
-    }
+        console.error('Error updating data:', error);
+      
+        if (error.response) {
+          // If the server responded with an error message
+          alert(error.response.data.error);
+        } else {
+          // If there was a network error or some other issue
+          alert('An error occurred. Please try again later.');
+        }
+      }
   };
 
   return (
@@ -165,11 +173,11 @@ export default function AddModuleCategoryComponent({ updateGridData }) {
         <SideDrawer open={open} onClose={handleClose}>
           <Box className="mySideDrawer"  sx={{ width: 400, bgcolor: 'background.paper', p: 2 }}>
             <Typography variant="h6" component="h2">
-              Add New Module
+              Add New Module Category
             </Typography>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="name">Module Category Name:</label>
+                    <label className="mb-2 fw-bold" htmlFor="name">Category Name:</label>
                     <input
                     type="text"
                     id="name"
@@ -181,7 +189,7 @@ export default function AddModuleCategoryComponent({ updateGridData }) {
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="iconUrl">Module Icon:</label>
+                    <label className="mb-2 fw-bold" htmlFor="iconUrl">Icon:</label>
                     <input
                     type="text"
                     id="iconUrl"
@@ -189,11 +197,11 @@ export default function AddModuleCategoryComponent({ updateGridData }) {
                     className="form-control"
                     value={iconUrl}
                     onChange={handlemoduleIconUrlChange}
-                    placeholder="Enter Module Icon URL"
+                    placeholder="Enter Module Category Icon URL"
                     />
                 </div>
                 <div className="mb-3">
-                    <label className="mb-2 fw-bold" htmlFor="routingPage">Module Routing Link:</label>
+                    <label className="mb-2 fw-bold" htmlFor="routingPage">Routing Link:</label>
                     <input
                     type="text"
                     id="routingPage"
@@ -201,7 +209,7 @@ export default function AddModuleCategoryComponent({ updateGridData }) {
                     className="form-control"
                     value={routingPage}
                     onChange={handleroutingPageChange}
-                    placeholder="Enter Module Routing URL"
+                    placeholder="Enter Module Category Routing URL"
                     />
                 </div>
                 <div>
