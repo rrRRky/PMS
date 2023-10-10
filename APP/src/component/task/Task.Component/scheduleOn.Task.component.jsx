@@ -4,12 +4,13 @@ import Popover from '@mui/material/Popover';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
-const ScheduleOnComponent = ({onSelectSechudule}) => {
+const ScheduleOnComponent = ({onSelectSechudule , initialValue}) => {
+  console.log('before start ' ,onSelectSechudule,  initialValue);
   const [anchorEl, setAnchorEl] = useState(null);
   const [isDatePickerOpen, setDatePickerOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date()); // Initialize with a default value
+  const [selectedDate, setSelectedDate] = useState(initialValue  ? new Date(initialValue) : new Date()); // Initialize with a default value
   const datePickerRef = useRef(null);
-
+  console.log('initialValue initialValue initialValue' , initialValue);
   const handleAvatarClick = (event) => {
     setAnchorEl(event.currentTarget);
     setDatePickerOpen(!isDatePickerOpen);
@@ -34,7 +35,10 @@ const ScheduleOnComponent = ({onSelectSechudule}) => {
     }
   };
 
-
+  useEffect(() => {
+    // Set the initial value when the component mounts or when initialValue changes
+    setSelectedDate(initialValue ? new Date(initialValue) : new Date());
+  }, [initialValue]);
 
   useEffect(() => {
     if (onSelectSechudule) {

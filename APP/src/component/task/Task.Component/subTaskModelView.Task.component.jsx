@@ -62,7 +62,7 @@ const CloseModalButton = styled(MdClose)`
 
 
 
-export const SubModal = ({ subtaskshowsecmodal, setShowSecModal }) => {
+export const SubModal = ({ subtaskshowsecmodal, setShowSecModal , mytaskId  }) => {
   
   const spaceID = localStorage.getItem('spaceID');
   const SubSpaceID = localStorage.getItem('SubSpaceID');

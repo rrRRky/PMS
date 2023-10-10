@@ -95,6 +95,7 @@ const Sidebar = () => {
             'Authorization': `${userToken}`,
           },
         });
+        console.log(response);
         if (!response.ok) {
           if (response.status === 401) {
             console.log(userData.Name);
@@ -134,7 +135,6 @@ const Sidebar = () => {
               SpaceName: SpaceName,
             })),
           };
-  
           return spaceSubspaceItem;
         });
         // console.log('Transformed data:', transformedData);

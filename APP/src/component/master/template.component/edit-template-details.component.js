@@ -116,9 +116,11 @@ console.log(ContextControlId);
 
   const handlevalueTypeIdChange = (event) => {
     const selectedDetailRoleId = event.target.value;
+    console.log(selectedDetailRoleId);
     setvalueTypeId(selectedDetailRoleId); 
     setRole(prevRole => ({ ...prevRole, roleId: selectedDetailRoleId })); 
     console.log(selectedDetailRoleId );
+    console.log(valueTypeId );
   };
 
   const handlecontrolIdChange = (event) => {
@@ -167,8 +169,8 @@ console.log(ContextControlId);
       const payload = {
         id : templateID,
         templateId: role.templateId,
-        controlId: controlId,
-        valueTypeId: role.valueTypeId,
+        controlId: Number(controlId),
+        valueTypeId: valueTypeId,
         labelName: role.labelName,
         width: role.width,
         isEnable: isaEnable,

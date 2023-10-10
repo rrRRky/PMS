@@ -68,6 +68,7 @@ const CloseModalButton = styled(MdClose)`
 export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
   const [showSecondModal, setShowSecondModal] = useState(false);
   const spaceID = localStorage.getItem('spaceID');
+  const [mytaskId, setMyTaskId] = useState(null);
   const SubSpaceID = localStorage.getItem('SubSpaceID');
   const SpaceName = localStorage.getItem('SpaceName');
   const SubSpaceName = localStorage.getItem('SubSpaceName');
@@ -82,7 +83,7 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
     transform: showmodal ? `translateY(0%)` : `translateY(-100%)`
   });
 
-  const currentStage = stages?.[3]; // If stages is undefined, currentStage will be undefined
+  const currentStage = stages?.[0]; // If stages is undefined, currentStage will be undefined
   console.log('currentStage', currentStage);
 
   // Check if currentStage is defined before accessing its properties
@@ -224,7 +225,6 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {  
         
       const storedUserData = localStorage.getItem('userSession');
@@ -239,6 +239,7 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
             startDate:periodstartDateData,
             endDate:periodendDateData,
             scheduleTime:scheduleOnData,
+            totalMints: taskTotalHourTimeData * 60 + taskTotalMinTimeData, 
             watchers:watchersData,
             spoc:singlePointContactData,
             createdBy: createdByData,
@@ -255,12 +256,16 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
         body: JSON.stringify(payloadCatID),
       });
       console.log(JSON.stringify(payloadCatID));
+      const responseData = await response.json();
+      const projectId = responseData.SaveData.ProjectTaskHeaderId;
+      setMyTaskId(projectId); 
+      console.log(projectId);
       if (response.status === 200) {
-        console.log('New Control added successfully');
+        console.log('New Task added successfully');
         updateGridData(); // Fetch the updated data
       } else {
         // Handle error response
-        console.error('Failed to add New Control');
+        console.error('Failed to add New Task');
         console.log(payloadCatID);
       }
     } catch (error) {
@@ -269,15 +274,12 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
         if (error.response) {
           // If the server responded with an error message
           alert(error.response.data.error);
-        } else {
-          // If there was a network error or some other issue
-          alert('An error occurred. Please try again later.');
-        }
+        } 
       }
   };
 
 
-  // console.log(stages);
+  console.log(mytaskId);
   return (
     <>
       {showmodal ? (
@@ -288,8 +290,12 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
                 <div className='mainModalWrapper'>
                   <div className='modalwrapper rowoneWrapper modalwrapperonebgColor'>
                     <div className='modalHeaderTopWrapper ProjectBreadcum'>
-                      <h4>{SpaceName} / {SubSpaceName} </h4> 
-                      <button type='submit' className='btn btn-sm btn-success' onClick={handleSubmit}>Save Task</button>
+                      <h4>
+                        <span> {SpaceName} / {SubSpaceName} </span>  
+                        <span>
+                          <button type='submit' className='btn btn-sm btn-success' onClick={handleSubmit}>Save Task</button> 
+                        </span>
+                      </h4> 
                       <CloseModalButton
                         aria-label='Close modal'
                         onClick={() => {
@@ -359,10 +365,12 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
                           <ScheduleOnComponent onSelectSechudule={handleScheduleOnChange}/>
                         </div>
                         <div className='modalHeaderbottommiddleinnerWrapper taskDateviewType'>
-                         <PeriodWithTotalTimeComponent onPeriodstartDateChange={handlePeriodstartDateChange} onPeriodendDateChange={handlePeriodendDateChange} />
+                         <PeriodWithTotalTimeComponent onPeriodstartDateChange={handlePeriodstartDateChange} 
+                         onPeriodendDateChange={handlePeriodendDateChange} />
                         </div>
                         <div className='modalHeaderbottommiddleinnerWrapper taskDateviewType'>
-                          <TaskTotalTimeComponent onSelecthour={handleTaskTotalTimeHourChange} onSelectmin={handleTaskTotalTimeMinChange} />
+                          <TaskTotalTimeComponent onSelecthour={handleTaskTotalTimeHourChange} 
+                          onSelectmin={handleTaskTotalTimeMinChange} />
                         </div>
                         <div className='modalHeaderbottommiddleinnerWrapper taskDateviewType'>
                           <SinglePointContactComponent onSelectSPOC={handleSinglePointContactChange} />
@@ -406,12 +414,13 @@ export const Modal = ({ showmodal, setShowModal , updateGridData}) => {
                   <div className='modalwrapper rowfourWrapper modalwrapperfourbgColor'>
                     <div className='row m-0 p-o'>
                       <div className='modalBodyLeftOuter col-lg-6 col-12'>
-                        <DynamicFormComponent/>
+                        <DynamicFormComponent stageId={stageId} mytaskId={mytaskId}/>
                       </div>
                       <div className='modalBodyMiddleOuter col-lg-6 col-12'>
                           <SubtaskViewComponent
                             showmodal={showSecondModal}
                             setShowModal={setShowSecondModal}
+                            mytaskId={mytaskId}
                           />
                       </div>
                     </div>

@@ -6,7 +6,6 @@ const CreatedByComponent = ({onSelectCreatedBy}) => {
   const userData = JSON.parse(storedUserData);
   const userId = userData.id;
   const username = userData.Name;
-console.log(username);
   useEffect(() => {
     onSelectCreatedBy(userId);
   }, [onSelectCreatedBy, userId]);

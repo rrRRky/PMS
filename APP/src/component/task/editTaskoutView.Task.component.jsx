@@ -9,6 +9,7 @@ class BtnCellRenderer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      TaskIdToEdit: null,
       Name: localStorage.getItem('Name'),
       userMap: {},
       isLoading: true,
@@ -46,21 +47,28 @@ class BtnCellRenderer extends Component {
     fetchModuleRights();
   }
 
-  btnClickedHandler = (action, controlId) => {
-    console.log('clicked:', action);
-    console.log('Editing list with ID:', controlId);
-    // Open the modal by calling the function from props
-    this.props.setShowModal(true);
+  btnClickedHandler = (TaskRowID) => {
+    const { setShowModal , handleOpenModal  } = this.props;
+    console.log('Clicked edit button. Task ID:', TaskRowID);
+    setShowModal(true, TaskRowID);
+    handleOpenModal(TaskRowID);
+    this.setState({
+      TaskIdToEdit: TaskRowID,
+      showModal: true,
+    });
   };
 
   render() {
     const { data } = this.props;
     const ModuleRights = this.state.ModuleRights;
-    const roleId = data.id;
+    const TaskRowID = data.id;
     const SubSpaceID = data.SpaceListId;
-
     const EditButton = (
-      <Button variant="contained" style={{ minWidth: '30px', height: '30px' }} onClick={() => this.btnClickedHandler(SubSpaceID, 'edit')}>
+      <Button
+        variant="contained"
+        style={{ minWidth: '30px', height: '30px' }}
+        onClick={() => this.btnClickedHandler(TaskRowID)}
+      >
         <FontAwesomeIcon
           className='text-light'
           icon={faEdit}
@@ -68,13 +76,15 @@ class BtnCellRenderer extends Component {
         />
       </Button>
     );
-
+    
     const buttonMap = {
       'E': EditButton,
     };
 
     return (
-      <span className='d-flex justify-content-between align-items-center' style={{ height: "44px" }} onClick={() => this.btnClickedHandler(roleId, 'edit')}>
+      <span className='d-flex justify-content-between align-items-center' 
+      style={{ height: "44px" }} 
+      onClick={() => this.btnClickedHandler(TaskRowID)}>
         {ModuleRights.map(permission => {
           const { Code, IsApplicable } = permission;
           if (IsApplicable && buttonMap[Code]) {
